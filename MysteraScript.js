@@ -18104,6 +18104,16 @@ CE.onMessage = function(json) {
 		return scores.pve+"|"+scores.pvp+"|"+scores.train+" "+txt+"\n"
 	    } else return txt
 	}).join('\n')
+    } else if(json.text == "<span style='color:#ff6633'><strong>FIGHT!!</strong></span>") {
+    if(CE.breakFight) {
+        setTimeout( () => {
+        send({type: "A"})
+        send({type: "a"})
+        }, 60000)
+    }
+    } else if(json.text.match(/^<span style='color:#ff6633'>The battle is over and/) || json.text == "<span style='color:#ff6633'>Battle cancelled: Not enough participants.</span>") {
+    send({type: "A"})
+    send({type: "a"})
     }
 }
 
